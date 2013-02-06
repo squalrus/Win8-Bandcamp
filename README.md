@@ -1,3 +1,3 @@
 # Windows 8 JavaScript Bandcamp API
 
-I hope you find this page helpful!
+Windows 8 JS helpers for accessing the Bandcamp API.
