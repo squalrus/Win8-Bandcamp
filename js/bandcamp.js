@@ -24,12 +24,12 @@ var Bandcamp = WinJS.Class.define(
     this._moduleAlbumVersion = 2;
     // info
 
-    this.moduleTrack = 'track';
-    this.moduleTrackVersion = 3;
+    this._moduleTrack = 'track';
+    this._moduleTrackVersion = 3;
     // info
 
-    this.moduleUrl = 'url';
-    this.moduleUrlVersion = 1;
+    this._moduleUrl = 'url';
+    this._moduleUrlVersion = 1;
     // info
   },
 
@@ -58,25 +58,39 @@ var Bandcamp = WinJS.Class.define(
       });
     },
 
+    /*
+     * bandDiscogrophy() Retrieve a band discogrophy given a band ID
+     * @param name <String> The ID representing the album
+     * @sample
+     */
     bandDiscogrophy: function (bandId) {
+
+      // Return the xhr object
       return WinJS.xhr({
         responseType: 'json',
         type: 'GET',
-        url: this.url + 'discography?key=' + this.key + '&band_id=' + bandId
+        url: this._baseUrl + this._moduleBand + '/' + this._moduleBandVersion + '/discography?key=' + this._key + '&band_id=' + bandId
       });
     },
 
+    /*
+     * bandInfo() Retrieve band info given a band ID
+     * @param name <String> The ID representing the album
+     * @sample
+     */
     bandInfo: function (bandId) {
+
+      // Return the xhr object
       return WinJS.xhr({
         responseType: 'json',
         type: 'GET',
-        url: this.url + 'info?key=' + this.key + '&band_id=' + bandId
+        url: this._baseUrl + this._moduleBand + '/' + this._moduleBandVersion + '/info?key=' + this._key + '&band_id=' + bandId
       });
     },
 
     /*
      * albumInfo() Retrieve the album information based on album ID
-     * @param name <String> The ID representing the album
+     * @param albumId <String> The album ID
      * @sample http://api.bandcamp.com/api/album/2/info?key=<key>&album_id=2587417518
      */
     albumInfo: function(albumId) {
@@ -89,19 +103,33 @@ var Bandcamp = WinJS.Class.define(
       });
     },
 
+    /*
+     * trackInfo() Retrieve the track information based on track ID
+     * @param albumId <String> The track ID
+     * @sample
+     */
     trackInfo: function (trackId) {
+
+      // Return the xhr object
       return WinJS.xhr({
         responseType: 'json',
         type: 'GET',
-        url: this.url + 'info?key=' + this.key + '&track_id=' + trackId
+        url: this._baseUrl + this._moduleTrack + '/' + this._moduleTrackVersion + '/info?key=' + this._key + '&track_id=' + trackId
       });
     },
 
+    /*
+     * urlInfo() Retrieve the url information based on a URL
+     * @param url <String> The URL
+     * @sample
+     */
     urlInfo: function (url) {
+
+      // Return the xhr object
       return WinJS.xhr({
         responseType: 'json',
         type: 'GET',
-        url: this.url + 'info?key=' + this.key + '&url=' + url
+        url: this._baseUrl + this._moduleUrl + '/' + this._moduleUrlVersion + '/info?key=' + this._key + '&url=' + url
       });
     }
   },
