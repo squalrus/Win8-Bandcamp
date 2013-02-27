@@ -76,11 +76,15 @@ var Bandcamp = WinJS.Class.define(
           });
       },
 
+      /*
+       * bandInfo() Search for a band's info
+       * @param bandId <Number> The band's id of which to search
+       */
       bandInfo: function (bandId) {
           return WinJS.xhr({
               responseType: 'json',
               type: 'GET',
-              url: this.url + 'info?key=' + this.key + '&band_id=' + bandId
+              url: this.BASE_URL + this.MODULE_BAND + '/' + this.MODULE_BAND_VERSION + '/info?key=' + this._key + '&band_id=' + bandId
           });
       },
 
