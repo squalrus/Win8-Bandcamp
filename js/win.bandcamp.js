@@ -1,4 +1,4 @@
-﻿// Bandcamp API
+// Bandcamp API
 // @author Chad Schulz
 // @version 0.1.0
 
