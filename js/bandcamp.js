@@ -21,8 +21,8 @@ var Bandcamp = function ( key ){
   this.versionDefault = 3;
 
   // Band module [search. discography, info]
-  this.MODULE_BAND = 'band';
-  this.MODULE_BAND_VERSION = 3;
+  this._MODULE_BAND = 'band';
+  this._MODULE_BAND_VERSION = 3;
 
   // Album module [info]
   this.MODULE_ALBUM = 'album';
@@ -55,7 +55,7 @@ var Bandcamp = function ( key ){
       return $.ajax({
           dataType: 'jsonp',
           type: 'GET',
-          url: this._BASE_URL + this.MODULE_BAND + '/' + this.MODULE_BAND_VERSION + '/search?key=' + this._key + '&name=' + searchTerm
+          url: this._BASE_URL + this._MODULE_BAND + '/' + this._MODULE_BAND_VERSION + '/search?key=' + this._key + '&name=' + searchTerm
       });
   },
 
@@ -63,11 +63,11 @@ var Bandcamp = function ( key ){
    * bandDiscography() Search for a band's discography
    * @param bandId <Number> The band's id of which to search
    */
-  this.bandDiscography = function (bandId) {
-      return WinJS.xhr({
-          responseType: 'json',
+  this.bandDiscography = function ( bandId ) {
+      return $.ajax({
+          dataType: 'jsonp',
           type: 'GET',
-          url: this._BASE_URL + this.MODULE_BAND + '/' + this.MODULE_BAND_VERSION + '/discography?key=' + this._key + '&band_id=' + bandId
+          url: this._BASE_URL + this._MODULE_BAND + '/' + this._MODULE_BAND_VERSION + '/discography?key=' + this._key + '&band_id=' + bandId
       });
   },
 

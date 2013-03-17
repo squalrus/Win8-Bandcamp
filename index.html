@@ -34,5 +34,20 @@
     </div>
 
 
+    <div class="container">
+        <h2>Band Discography</h2>
+        <input id="bandDiscographyTerm" type="text" value="4151651232" />
+        <button id="bandDiscography" class="btn btn-small">Search</button>
+        <script>
+            $( '#bandDiscography' ).on( 'click', function( event ){
+                var term = $( '#bandDiscographyTerm' )[0].value;
+                bc.bandDiscography( term ).done( function( data ){
+                    console.log( data.discography );
+                });
+            });
+        </script>
+    </div>
+
+
 </body>
 </html>
