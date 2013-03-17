@@ -64,5 +64,35 @@
     </div>
 
 
+    <div class="container">
+        <h2>Album Info</h2>
+        <input id="albumInfoTerm" type="text" value="2830519537" />
+        <button id="albumInfo" class="btn btn-small">Search</button>
+        <script>
+            $( '#albumInfo' ).on( 'click', function( event ){
+                var term = $( '#albumInfoTerm' )[0].value;
+                bc.albumInfo( term ).done( function( data ){
+                    console.log( data );
+                });
+            });
+        </script>
+    </div>
+
+
+    <div class="container">
+        <h2>Track Info</h2>
+        <input id="trackInfoTerm" type="text" value="1822857759" />
+        <button id="trackInfo" class="btn btn-small">Search</button>
+        <script>
+            $( '#trackInfo' ).on( 'click', function( event ){
+                var term = $( '#trackInfoTerm' )[0].value;
+                bc.trackInfo( term ).done( function( data ){
+                    console.log( data );
+                });
+            });
+        </script>
+    </div>
+
+
 </body>
 </html>

@@ -25,12 +25,12 @@ var Bandcamp = function ( key ){
   this._MODULE_BAND_VERSION = 3;
 
   // Album module [info]
-  this.MODULE_ALBUM = 'album';
-  this.MODULE_ALBUM_VERSION = 2;
+  this._MODULE_ALBUM = 'album';
+  this._MODULE_ALBUM_VERSION = 2;
 
   // Track module [info]
-  this.moduleTrack = 'track';
-  this.moduleTrackVersion = 3;
+  this._MODULE_TRACK = 'track';
+  this._MODULE_TRACK_VERSION = 3;
 
   // Url module [info]
   this.moduleUrl = 'url';
@@ -63,7 +63,7 @@ var Bandcamp = function ( key ){
    * bandDiscography() Search for a band's discography
    * @param bandId <Number> The band's id of which to search
    */
-  this.bandDiscography = function ( bandId ) {
+  this.bandDiscography = function( bandId ){
       return $.ajax({
           dataType: 'jsonp',
           type: 'GET',
@@ -75,7 +75,7 @@ var Bandcamp = function ( key ){
    * bandInfo() Search for a band's info
    * @param bandId <Number> The band's id of which to search
    */
-  this.bandInfo = function ( bandId ) {
+  this.bandInfo = function( bandId ){
       return $.ajax({
           dataType: 'jsonp',
           type: 'GET',
@@ -88,21 +88,26 @@ var Bandcamp = function ( key ){
    * @param name <String> The ID representing the album
    * @sample http://api.bandcamp.com/api/album/2/info?key=<key>&album_id=2587417518
    */
-  this.albumInfo = function (albumId) {
+  this.albumInfo = function( albumId){
 
       // Return the xhr object
-      return WinJS.xhr({
-          responseType: 'json',
+      return $.ajax({
+          dataType: 'jsonp',
           type: 'GET',
-          url: this.BASE_URL + this.MODULE_ALBUM + '/' + this.MODULE_ALBUM_VERSION + '/info?key=' + this._key + '&album_id=' + albumId
+          url: this._BASE_URL + this._MODULE_ALBUM + '/' + this._MODULE_ALBUM_VERSION + '/info?key=' + this._key + '&album_id=' + albumId
       });
   },
 
-  this.trackInfo = function (trackId) {
-      return WinJS.xhr({
-          responseType: 'json',
+  /*
+   * trackInfo() Retrieve the track information based on track ID
+   * @param name <String> The ID representing the track
+   * @sample http://api.bandcamp.com/api/album/2/info?key=<key>&album_id=2587417518
+   */
+  this.trackInfo = function( trackId ){
+      return $.ajax({
+          dataType: 'jsonp',
           type: 'GET',
-          url: this.url + 'info?key=' + this.key + '&track_id=' + trackId
+          url: this._BASE_URL + this._MODULE_TRACK + '/' + this._MODULE_TRACK_VERSION + '/info?key=' + this._key + '&track_id=' + trackId
       });
   },
 
