@@ -75,11 +75,11 @@ var Bandcamp = function ( key ){
    * bandInfo() Search for a band's info
    * @param bandId <Number> The band's id of which to search
    */
-  this.bandInfo = function (bandId) {
-      return WinJS.xhr({
-          responseType: 'json',
+  this.bandInfo = function ( bandId ) {
+      return $.ajax({
+          dataType: 'jsonp',
           type: 'GET',
-          url: this._BASE_URL + this.MODULE_BAND + '/' + this.MODULE_BAND_VERSION + '/info?key=' + this._key + '&band_id=' + bandId
+          url: this._BASE_URL + this._MODULE_BAND + '/' + this._MODULE_BAND_VERSION + '/info?key=' + this._key + '&band_id=' + bandId
       });
   },
 
