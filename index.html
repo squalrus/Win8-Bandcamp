@@ -21,7 +21,7 @@
 
     <div class="container">
         <h2>Band Search</h2>
-        <input id="bandSearchTerm" type="text" value="sufjan" />
+        <input id="bandSearchTerm" type="text" value="finch" />
         <button id="bandSearch" class="btn btn-small">Search</button>
         <script>
             $( '#bandSearch' ).on( 'click', function( event ){
@@ -87,6 +87,21 @@
             $( '#trackInfo' ).on( 'click', function( event ){
                 var term = $( '#trackInfoTerm' )[0].value;
                 bc.trackInfo( term ).done( function( data ){
+                    console.log( data );
+                });
+            });
+        </script>
+    </div>
+
+
+    <div class="container">
+        <h2>Url Info</h2>
+        <input id="urlInfoTerm" type="text" value="http://finchmusic.bandcamp.com" />
+        <button id="urlInfo" class="btn btn-small">Search</button>
+        <script>
+            $( '#urlInfo' ).on( 'click', function( event ){
+                var term = $( '#urlInfoTerm' )[0].value;
+                bc.urlInfo( term ).done( function( data ){
                     console.log( data );
                 });
             });
