@@ -4,6 +4,12 @@
     <title>Test Harness | Site Diagnostics</title>
 
     <link rel="stylesheet" type="text/css" href="http://chadschulz.com/css/cs.min.css" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="js/bandcamp.js"></script>
+    <script>
+        var k = new RegExp( '[\\?&]key=([^&#]*)' ).exec( window.location.href );
+        var bc = new Bandcamp( k[1] );
+    </script>
 </head>
 
 <body>
@@ -12,9 +18,21 @@
         <h1>Test Harness</h1>
     </div>
 
-    <script src="js/bandcamp.js"></script>
-    <script>
 
-    </script>
+    <div class="container">
+        <h2>Band Search</h2>
+        <input id="bandSearchTerm" type="text" value="sufjan" />
+        <button id="bandSearch" class="btn btn-small">Search</button>
+        <script>
+            $( '#bandSearch' ).on( 'click', function( event ){
+                var term = $( '#bandSearchTerm' )[0].value;
+                bc.bandSearch( term ).done( function( data ){
+                    console.log( data.results );
+                });
+            });
+        </script>
+    </div>
+
+
 </body>
 </html>
