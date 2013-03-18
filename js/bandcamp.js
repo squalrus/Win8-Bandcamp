@@ -5,37 +5,30 @@
   // Constructor
 var Bandcamp = function ( key ){
 
-  // Debug mode -- '&debug'
-  this.debug = false;
+  this.VERSION =                '0.1.0';
 
-  // Bandcamp API key
-  this._key = key;
+  this.debug = false;                     // Debug mode -- '&debug'
+  this._key =                   key;      // Bandcamp API key
 
-  // Version
-  this.VERSION = '0.1.0';
+  this._BASE_URL =              'http://api.bandcamp.com/api/';
+  this._MODULE_BAND =           'band';   // Band module [search. discography, info]
+  this._MODULE_BAND_VERSION =   3;
+  this._MODULE_ALBUM =          'album';  // Album module [info]
+  this._MODULE_ALBUM_VERSION =  2;
+  this._MODULE_TRACK =          'track';  // Track module [info]
+  this._MODULE_TRACK_VERSION =  3;
+  this._MODULE_URL =            'url';    // Url module [info]
+  this._MODULE_URL_VERSION =    1;
 
-  this._BASE_URL = 'http://api.bandcamp.com/api/';
-
-  // Default module
-  this.moduleDefault = 'band';
-  this.versionDefault = 3;
-
-  // Band module [search. discography, info]
-  this._MODULE_BAND = 'band';
-  this._MODULE_BAND_VERSION = 3;
-
-  // Album module [info]
-  this._MODULE_ALBUM = 'album';
-  this._MODULE_ALBUM_VERSION = 2;
-
-  // Track module [info]
-  this._MODULE_TRACK = 'track';
-  this._MODULE_TRACK_VERSION = 3;
-
-  // Url module [info]
-  this._MODULE_URL = 'url';
-  this._MODULE_URL_VERSION = 1;
-
+  this._DISCOVER_URL =          'http://bandcamp.com/discover_cb';
+  /*
+  f:all
+  p:2
+  g:alternative
+  r:null
+  s:top
+  w:0
+  */
 
   /*
    * bandSearch() Search for a band name
@@ -121,6 +114,28 @@ var Bandcamp = function ( key ){
           dataType: 'jsonp',
           type: 'GET',
           url: this._BASE_URL + this._MODULE_URL + '/' + this._MODULE_URL_VERSION + '/info?key=' + this._key + '&url=' + url
+      });
+  },
+
+
+  /*
+   * discover() Return
+   * @param url <String> The ID representing the track
+   * @example http://api.bandcamp.com/api/url/1/info?key=<key>&url=http://finchmusic.bandcamp.com
+   */
+  this.discover = function( genre ){
+      return $.ajax({
+          dataType: 'jsonp',
+          type: 'GET',
+          data: {
+            f: 'all',
+            p: 2,
+            g: genre,
+            r: null,
+            s: 'top',
+            w: 0
+          },
+          url: this._DISCOVER_URL
       });
   }
 
